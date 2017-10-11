@@ -321,8 +321,6 @@ omx_video::omx_video():
     property_get("ro.board.platform", platform_name, "0");
     strlcpy(m_platform, platform_name, sizeof(m_platform));
 #endif
-
-    pthread_mutex_init(&m_buf_lock, NULL);
 }
 
 
@@ -364,8 +362,6 @@ omx_video::~omx_video()
     sem_destroy(&m_cmd_lock);
     DEBUG_PRINT_HIGH("m_etb_count = %" PRIu64 ", m_fbd_count = %" PRIu64, m_etb_count,
             m_fbd_count);
-
-    pthread_mutex_destroy(&m_buf_lock);
     DEBUG_PRINT_HIGH("omx_video: Destructor exit");
     DEBUG_PRINT_HIGH("Exiting OMX Video Encoder ...");
 }
